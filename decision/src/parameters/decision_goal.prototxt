@@ -1,0 +1,180 @@
+simulate: true
+master: true
+
+
+start_pose{
+	x: 0.56 # 7.68
+	y: 0.56 # 4.77
+	z: 0
+
+	roll:	0
+	pitch:	0
+	yaw:	0 # 3.14
+}
+
+default_fight_goal{
+
+	goal_amount: 4	# number of goals
+
+	fight_goal {
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+
+	fight_goal {
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+
+	fight_goal {
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+
+	fight_goal {
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+}
+
+buff_monitor_pose{
+	monitor_pose {	# ①
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+
+	monitor_pose {	# ②
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+	
+	monitor_pose {	# ③
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+
+	monitor_pose {	# ④
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+	
+	monitor_pose {	# ⑤
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+
+	monitor_pose {	# ⑥
+		x: 0.56 # 7.68
+		y: 0.56 # 4.77
+		z: 0
+
+		roll:	0
+		pitch:	0
+		yaw:	0 # 3.14
+	}
+}
+
+buff_point {
+	x:	4.35
+	y:	2.56
+	z:	0
+
+	roll:	0
+  	pitch:	0
+  	yaw:	-0.52 #2.62
+}
+
+buff_point {
+	x:	4.15
+	y:	2.85
+	z:	0
+
+	roll:	0
+  	pitch:	0
+  	yaw:	-0.52 #2.62
+}
+
+buff_point {
+	x:	4.15
+	y:	2.85
+	z:	0
+
+	roll:	0
+  	pitch:	0
+  	yaw:	-0.52 #2.62
+}
+
+buff_point {
+	x:	4.15
+	y:	2.85
+	z:	0
+
+	roll:	0
+  	pitch:	0
+  	yaw:	-0.52 #2.62
+}
+
+buff_point {
+	x:	4.15
+	y:	2.85
+	z:	0
+
+	roll:	0
+  	pitch:	0
+  	yaw:	-0.52 #2.62
+}
+
+buff_point {
+	x:	4.15
+	y:	2.85
+	z:	0
+
+	roll:	0
+  	pitch:	0
+  	yaw:	-0.52 #2.62
+}

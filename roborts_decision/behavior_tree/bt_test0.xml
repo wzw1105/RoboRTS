@@ -1,0 +1,45 @@
+<root main_tree_to_execute = "MainTree" >
+
+    	<BehaviorTree ID="MainTree">
+			<Fallback name="root_fallback">
+
+				<NotGameStage name="NotGameStage" />
+				
+
+				<ReactiveSequence name="Fight">
+					<WeatherFight name="WeatherFight"/>
+
+					<Fallback name="Weather_Suitable_for_fighting">
+						<WeatherSuitableToFight name="WeatherSuitableToFight"/>
+
+						<ReactiveSequence name="Compute_Move_FightGoal">
+							<ComputeFightMoveGoal name="ComputeFightMoveGoal"/>
+							<MoveGoal name="MoveGoal"/>
+						</ReactiveSequence>
+					</Fallback>
+	
+					<ShootAction name="ShootAction"/>
+					
+					<SwingIdle name="SwingIdle"/>
+
+				</ReactiveSequence>
+				
+				<ReactiveSequence name="Addition">
+					<WeatherAddition name="WeatherAddition"/>
+
+					<Sequence name="move_addition">
+						<ComputeAdditionGoal name="ComputeAdditionGoal"/>
+						<MoveGoal name="MoveGoal"/>
+					</Sequence>
+				</ReactiveSequence>
+
+				<ReactiveSequence name="Patrol">
+					<WeatherPatrol name="WeatherPatrol"/>
+					<Patrol name="Patrol"/>
+				</ReactiveSequence>
+
+				
+			</Fallback>
+     	</BehaviorTree>
+
+ 	</root>

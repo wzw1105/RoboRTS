@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Fallback>
+            <ReactiveSequence>
+                <Condition ID="PreParation5Seconds"/>
+                <Action ID="InitTheRobot"/>
+            </ReactiveSequence>
+            <ReactiveSequence>
+                <Condition ID="GameEnd"/>
+                <Action ID="MoveToBootArea"/>
+            </ReactiveSequence>
+            <ReactiveSequence>
+                <Condition ID="InGame"/>
+                <Fallback>
+                    <ReactiveSequence>
+                        <Condition ID="EnoughBlood"/>
+                        <Fallback>
+                            <ReactiveSequence>
+                                <Condition ID="EnoughBullets"/>
+                                <Fallback>
+                                    <Sequence>
+                                        <Condition ID="SufferFastHit"/>
+                                        <Fallback>
+                                            <Sequence>
+                                                <Condition ID="GuardMsg1SecondUseful"/>
+                                                <Action ID="FindAvailableShootPositionWithGuardMsg"/>
+                                                <Action ID="MoveToEnemyArea"/>
+                                            </Sequence>
+                                            <Timeout msec="3000">
+                                                <Action ID="Swing360"/>
+                                            </Timeout>
+                                        </Fallback>
+                                    </Sequence>
+                                    <ReactiveSequence>
+                                        <Inverter>
+                                            <Condition ID="SufferFastHit"/>
+                                        </Inverter>
+                                        <Fallback>
+                                            <ReactiveSequence>
+                                                <Condition ID="DetectedEnemyIn1Second"/>
+                                                <Action ID="Shoot"/>
+                                            </ReactiveSequence>
+                                            <ReactiveSequence>
+                                                <Inverter>
+                                                    <Condition ID="DetectedEnemyIn1Second"/>
+                                                </Inverter>
+                                                <Fallback>
+                                                    <Sequence>
+                                                        <Condition ID="GuardMsg1SecondUseful"/>
+                                                        <Action ID="FindAvailableShootPositionWithGuardMsg"/>
+                                                        <Action ID="MoveToEnemyArea"/>
+                                                    </Sequence>
+                                                    <ReactiveSequence>
+                                                        <Inverter>
+                                                            <Condition ID="GuardMsg1SecondUseful"/>
+                                                        </Inverter>
+                                                        <Action ID="Patrol"/>
+                                                    </ReactiveSequence>
+                                                </Fallback>
+                                            </ReactiveSequence>
+                                        </Fallback>
+                                    </ReactiveSequence>
+                                </Fallback>
+                            </ReactiveSequence>
+                            <ReactiveSequence>
+                                <Inverter>
+                                    <Condition ID="EnoughBullets"/>
+                                </Inverter>
+                                <Fallback>
+                                    <ReactiveSequence>
+                                        <Condition ID="BulletsAddAreaAvaliable"/>
+                                        <Action ID="MoveToBulletsAddArea"/>
+                                    </ReactiveSequence>
+                                    <ReactiveSequence>
+                                        <Inverter>
+                                            <Condition ID="BulletsAddAreaAvaliable"/>
+                                        </Inverter>
+                                        <Fallback>
+                                            <ReactiveSequence>
+                                                <Condition ID="HaveBullets"/>
+                                                <Fallback>
+                                                    <ReactiveSequence>
+                                                        <Condition ID="DetectedEnemyIn1Second"/>
+                                                        <Action ID="Shoot"/>
+                                                    </ReactiveSequence>
+                                                    <ReactiveSequence>
+                                                        <Inverter>
+                                                            <Condition ID="DetectedEnemyIn1Second"/>
+                                                        </Inverter>
+                                                        <Fallback>
+                                                            <Sequence>
+                                                                <Condition ID="GuardMsg1SecondUseful"/>
+                                                                <Action ID="FindAvailableShootPositionWithGuardMsg"/>
+                                                                <Action ID="MoveToEnemyArea"/>
+                                                            </Sequence>
+                                                            <ReactiveSequence>
+                                                                <Inverter>
+                                                                    <Condition ID="GuardMsg1SecondUseful"/>
+                                                                </Inverter>
+                                                                <Action ID="Patrol"/>
+                                                            </ReactiveSequence>
+                                                        </Fallback>
+                                                    </ReactiveSequence>
+                                                </Fallback>
+                                            </ReactiveSequence>
+                                            <ReactiveSequence>
+                                                <Inverter>
+                                                    <Condition ID="HaveBullets"/>
+                                                </Inverter>
+                                                <Action ID="Swing360"/>
+                                            </ReactiveSequence>
+                                        </Fallback>
+                                    </ReactiveSequence>
+                                </Fallback>
+                            </ReactiveSequence>
+                        </Fallback>
+                    </ReactiveSequence>
+                    <ReactiveSequence>
+                        <Inverter>
+                            <Condition ID="EnoughBlood"/>
+                        </Inverter>
+                        <Fallback>
+                            <ReactiveSequence>
+                                <Condition ID="EmergencyBlood"/>
+                                <Action ID="Swing360"/>
+                            </ReactiveSequence>
+                            <ReactiveSequence>
+                                <Inverter>
+                                    <Condition ID="EmergencyBlood"/>
+                                </Inverter>
+                                <Fallback>
+                                    <ReactiveSequence>
+                                        <Inverter>
+                                            <Condition ID="SufferMediumHit"/>
+                                        </Inverter>
+                                        <Fallback>
+                                            <ReactiveSequence>
+                                                <Condition ID="BloodAddAreaAvailable"/>
+                                                <Action ID="MoveToBloodAddArea"/>
+                                            </ReactiveSequence>
+                                            <ReactiveSequence>
+                                                <Inverter>
+                                                    <Condition ID="BloodAddAreaAvailable"/>
+                                                </Inverter>
+                                                <Fallback>
+                                                    <ReactiveSequence>
+                                                        <Condition ID="EnoughBullets"/>
+                                                        <Fallback>
+                                                            <ReactiveSequence>
+                                                                <Condition ID="DetectedEnemyIn1Second"/>
+                                                                <Action ID="Shoot"/>
+                                                            </ReactiveSequence>
+                                                            <ReactiveSequence>
+                                                                <Inverter>
+                                                                    <Condition ID="DetectedEnemyIn1Second"/>
+                                                                </Inverter>
+                                                                <Fallback>
+                                                                    <Sequence>
+                                                                        <Condition ID="GuardMsg1SecondUseful"/>
+                                                                        <Action ID="FindAvailableShootPositionWithGuardMsg"/>
+                                                                        <Action ID="MoveToEnemyArea"/>
+                                                                    </Sequence>
+                                                                    <ReactiveSequence>
+                                                                        <Inverter>
+                                                                            <Condition ID="GuardMsg1SecondUseful"/>
+                                                                        </Inverter>
+                                                                        <Action ID="Patrol"/>
+                                                                    </ReactiveSequence>
+                                                                </Fallback>
+                                                            </ReactiveSequence>
+                                                        </Fallback>
+                                                    </ReactiveSequence>
+                                                    <ReactiveSequence>
+                                                        <Inverter>
+                                                            <Condition ID="EnoughBullets"/>
+                                                        </Inverter>
+                                                        <Fallback>
+                                                            <ReactiveSequence>
+                                                                <Condition ID="BulletsAddAreaAvaliable"/>
+                                                                <Action ID="MoveToBulletsAddArea"/>
+                                                            </ReactiveSequence>
+                                                            <Sequence>
+                                                                <Inverter>
+                                                                    <Condition ID="BulletsAddAreaAvaliable"/>
+                                                                </Inverter>
+                                                                <Action ID="MoveToBootArea"/>
+                                                                <Action ID="Shoot"/>
+                                                            </Sequence>
+                                                        </Fallback>
+                                                    </ReactiveSequence>
+                                                </Fallback>
+                                            </ReactiveSequence>
+                                        </Fallback>
+                                    </ReactiveSequence>
+                                    <Sequence>
+                                        <Condition ID="SufferMediumHit"/>
+                                        <Timeout msec="2000">
+                                            <Action ID="Swing360"/>
+                                        </Timeout>
+                                    </Sequence>
+                                </Fallback>
+                            </ReactiveSequence>
+                        </Fallback>
+                    </ReactiveSequence>
+                </Fallback>
+            </ReactiveSequence>
+        </Fallback>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Condition ID="BloodAddAreaAvailable"/>
+        <Condition ID="BulletsAddAreaAvaliable"/>
+        <Condition ID="DetectedEnemyIn1Second"/>
+        <Condition ID="EmergencyBlood"/>
+        <Condition ID="EnoughBlood"/>
+        <Condition ID="EnoughBullets"/>
+        <Action ID="FindAvailableShootPositionWithGuardMsg"/>
+        <Condition ID="GameEnd"/>
+        <Condition ID="GuardMsg1SecondUseful"/>
+        <Condition ID="HaveBullets"/>
+        <Condition ID="InGame"/>
+        <Action ID="InitTheRobot"/>
+        <Action ID="MoveToBloodAddArea"/>
+        <Action ID="MoveToBootArea"/>
+        <Action ID="MoveToBulletsAddArea"/>
+        <Action ID="MoveToEnemyArea"/>
+        <Action ID="Patrol"/>
+        <Condition ID="PreParation5Seconds"/>
+        <Action ID="Shoot"/>
+        <Condition ID="SufferFastHit"/>
+        <Condition ID="SufferMediumHit"/>
+        <Action ID="Swing360"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+

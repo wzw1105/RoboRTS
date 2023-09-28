@@ -1,0 +1,27 @@
+# armor_process
+brightness_threshold_ : 200.0
+enable_debug_ : true
+
+## used for light selection
+light_min_area : 30
+light_max_ratio : 1.5
+light_contour_min_solidity : 0.4
+
+## used for light match
+light_max_angle_diff_ : 10
+light_max_height_diff_ratio_ : 0.4
+light_max_y_diff_ratio_ : 0.3
+light_min_x_diff_ratio_ : 0.6
+light_max_x_diff_ratio_ : 2
+armor_min_aspect_ratio_ : 0.3
+armor_max_aspect_ratio_ : 3.0
+light_min_dis_ : 20
+
+use_red_enermy : false
+
+# yolox_car
+cycle_length_ : 3
+dilate_width_ : 60
+dilate_height_ : 15
+
+

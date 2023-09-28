@@ -1,0 +1,41 @@
+camera: {
+  camera_name: "mv_camera"
+  camera_type: "mv"
+  camera_path: "/dev/mv_camera"
+
+  camera_matrix {
+    data: 1023.750304
+    data: 0.000000
+    data: 604.394527
+    data: 0.000000
+    data: 1021.269563
+    data: 513.893233
+    data: 0.000000 
+    data: 0.000000
+    data: 1.000000
+  }
+
+  camera_distortion {
+    data: -0.100613
+    data: 0.085533
+    data: 0.000253
+    data: 0.000570
+    data: 0.000000
+  }
+
+  resolution {
+    width: 1280
+    height: 1040
+  
+    width_offset: 0
+    height_offset: 0
+  }
+
+  fps: 100
+  auto_exposure: 1
+  exposure_value: 20
+  exposure_time: 10
+  auto_white_balance: 1
+  auto_gain: 0
+}
+

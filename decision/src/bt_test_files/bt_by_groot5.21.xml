@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Fallback name="root_fallback">
+            <Condition ID="NotGameStage"/>
+            <Sequence name="AwakeSrv">
+                <Condition ID="WhetherAwake"/>
+                <Action ID="Awaken"/>
+            </Sequence>
+            <ReactiveSequence name="WithdrawAddition">
+                <Sequence>
+                    <Condition ID="CheckAdditionGoingRefresh"/>
+                    <Condition ID="CheckPoseInAddition"/>
+                </Sequence>
+                <Sequence>
+                    <Action ID="SetGoal"/>
+                    <Action ID="MoveGoal"/>
+                </Sequence>
+            </ReactiveSequence>
+            <Sequence name="TurnDefend">
+                <Condition ID="WhetherTurnDefend"/>
+                <Action ID="Turn"/>
+            </Sequence>
+            <ReactiveSequence>
+                <SubTree ID="WhetherNotWithdrawAddition"/>
+                <Condition ID="WhetherPatrol"/>
+                <Fallback name="PatrolWay">
+                    <Sequence name="UseGuard">
+                        <Condition ID="GuardMsg1SecondUseful"/>
+                        <Action ID="FindAvailableShootPositionWithGuardMsg"/>
+                        <Action ID="MoveToEnermyArea"/>
+                    </Sequence>
+                    <ReactiveSequence name="WithoutGuard">
+                        <Inverter>
+                            <Condition ID="GuardMsg1SecondUseful"/>
+                        </Inverter>
+                        <Action ID="Patrol"/>
+                    </ReactiveSequence>
+                </Fallback>
+            </ReactiveSequence>
+            <ReactiveSequence name="BulletsAdditionAction">
+                <SubTree ID="WhetherNotWithdrawAddition"/>
+                <Condition ID="WhetherBulletsAddition"/>
+                <Sequence name="getgoal&amp;move">
+                    <Action ID="GetBulletsAdditionGoal"/>
+                    <Action ID="MoveGoal"/>
+                    <Fallback>
+                        <Condition ID="WhetherSuitableBulletsAddition"/>
+                        <Sequence>
+                            <Action ID="SetAdditionAdjustGoal"/>
+                            <Action ID="MoveGoal"/>
+                        </Sequence>
+                    </Fallback>
+                </Sequence>
+            </ReactiveSequence>
+            <ReactiveSequence name="HPAdditionAction">
+                <SubTree ID="WhetherNotWithdrawAddition"/>
+                <Condition ID="WhetherHPAddition"/>
+                <Sequence>
+                    <Action ID="GetHPAdditionGoal"/>
+                    <Action ID="MoveGoal"/>
+                    <Fallback>
+                        <Condition ID="WhetherSuitableHPAddition"/>
+                        <Sequence>
+                            <Action ID="SetAdditionAdjustGoal"/>
+                            <Action ID="MoveGoal"/>
+                        </Sequence>
+                    </Fallback>
+                </Sequence>
+            </ReactiveSequence>
+            <ReactiveSequence name="Shooting">
+                <SubTree ID="WhetherNotWithdrawAddition"/>
+                <Condition ID="WhetherFight"/>
+                <Fallback name="PendingOrShoot">
+                    <ReactiveSequence name="Shoot">
+                        <Condition ID="WhetherSuitableToFight"/>
+                        <Fallback name="SearchBackOrNot">
+                            <SequenceStar name="SearchBack">
+                                <Condition ID="WhetherSearchBack"/>
+                                <Action ID="SetSearchBackStatus"/>
+                                <Action ID="ComputeFightMoveGoal"/>
+                                <Action ID="MoveGoal"/>
+                                <Action ID="CancelSearchBackStatus"/>
+                            </SequenceStar>
+                            <Action ID="CancelSearchBackStatus"/>
+                        </Fallback>
+                        <Action ID="ComputeShootNumber" shoot_number="{number}"/>
+                        <Action ID="Shoot" number="{number}"/>
+                    </ReactiveSequence>
+                    <SequenceStar name="MoveToFight">
+                        <Condition ID="WhetherArmorDetected"/>
+                        <Action ID="ComputeFightMoveGoal"/>
+                        <Action ID="MoveGoal"/>
+                    </SequenceStar>
+                    <ReactiveSequence name="SwingWait">
+                        <Inverter>
+                            <Condition ID="WhetherArmorDetected"/>
+                        </Inverter>
+                        <Inverter>
+                            <Condition ID="WhetherSuitableToFight"/>
+                        </Inverter>
+                        <Action ID="SwingIdle"/>
+                    </ReactiveSequence>
+                </Fallback>
+            </ReactiveSequence>
+            <Sequence name="gameend">
+                <Condition ID="GameEnd"/>
+                <Action ID="SetGoal"/>
+                <Action ID="MoveGoal"/>
+                <Action ID="SetGameEnd"/>
+            </Sequence>
+        </Fallback>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <BehaviorTree ID="WhetherNotWithdrawAddition">
+        <Inverter>
+            <Sequence name="NotInFresshAddition">
+                <Condition ID="CheckAdditionGoingRefresh"/>
+                <Condition ID="CheckPoseInAddition"/>
+            </Sequence>
+        </Inverter>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="Awaken"/>
+        <Action ID="CancelSearchBackStatus"/>
+        <Condition ID="CheckAdditionGoingRefresh"/>
+        <Condition ID="CheckPoseInAddition"/>
+        <Action ID="ComputeAdditionGoal"/>
+        <Action ID="ComputeFightMoveGoal"/>
+        <Action ID="ComputeShootNumber">
+            <output_port name="shoot_number"/>
+        </Action>
+        <Action ID="Compute_ShootNumber">
+            <output_port name="shootnumber"/>
+        </Action>
+        <Action ID="FindAvailableShootPositionWithGuardMsg"/>
+        <Condition ID="GameEnd"/>
+        <Action ID="GetBulletsAdditionGoal"/>
+        <Action ID="GetHPAdditionGoal"/>
+        <Condition ID="GuardMsg1SecondUseful"/>
+        <Action ID="MoveGoal"/>
+        <Action ID="MoveToEnermyArea"/>
+        <Condition ID="NotGameStage"/>
+        <Action ID="Patrol"/>
+        <Action ID="PubShoot"/>
+        <Action ID="SetAdditionAdjustGoal"/>
+        <Action ID="SetGameEnd"/>
+        <Action ID="SetGoal"/>
+        <Action ID="SetSearchBackStatus"/>
+        <Action ID="Shoot">
+            <input_port name="number"/>
+        </Action>
+        <Action ID="ShootAction">
+            <input_port name="number"/>
+        </Action>
+        <Action ID="SwingIdle"/>
+        <Action ID="Turn"/>
+        <Action ID="UpdateAdditionActiveState"/>
+        <Condition ID="WhetherArmorDetected"/>
+        <Condition ID="WhetherAwake"/>
+        <Condition ID="WhetherBulletsAddition"/>
+        <Condition ID="WhetherFight"/>
+        <Condition ID="WhetherHPAddition"/>
+        <SubTree ID="WhetherNotWithdrawAddition"/>
+        <Condition ID="WhetherPatrol"/>
+        <Condition ID="WhetherSearchBack"/>
+        <Condition ID="WhetherSuitableBulletsAddition"/>
+        <Condition ID="WhetherSuitableHPAddition"/>
+        <Condition ID="WhetherSuitableToFight"/>
+        <Condition ID="WhetherSwingIdle"/>
+        <Condition ID="WhetherTurnDefend"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+

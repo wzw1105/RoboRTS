@@ -1,0 +1,8 @@
+enable_shoot : true
+min_area_for_resample : 800 # 装甲板面积小于这个阈值后，重新选取装甲板
+min_dis_for_resample : 0.4 # 装甲板map位置变化大于这个阈值后，重新选取装甲板
+bullet_min_cell_dis : 1 # 弹道与玻璃维持的最小距离
+yaw_change_threshold : 0.01 # 改变值很小不做改变，以防止抖动
+pitch_change_threshold : 0.01
+h : 0.2 # 弹道下降高度
+init_k_ : 0.026 # 空气阻力系数

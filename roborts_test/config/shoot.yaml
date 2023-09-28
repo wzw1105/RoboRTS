@@ -1,0 +1,11 @@
+enable_shoot : true
+min_area_for_resample : 800
+min_dis_for_resample : 0.4
+bullet_min_cell_dis : 1
+yaw_change_threshold : 0.01
+pitch_change_threshold : 0.01
+enermy_color_ : 1
+h : 0.15
+init_k_ : 0.020 #0.026
+offset_x : 0.2
+update_step : 10

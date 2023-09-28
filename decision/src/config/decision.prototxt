@@ -1,0 +1,462 @@
+simulate: true
+master: true
+use_pid: false
+
+robot_id: 1 # 101 2 102
+
+detection_shoot_config {
+  armor_change_threshold: 0.25
+  detect_lost_limit: 3
+  gimbal_adjust_history_range: 3
+  armor_detected_history_range: 25
+  armor_detected_history_threshold: 5
+  enemy_detected_history_range: 50
+  enemy_detected_history_threshold: 3
+  enemy_front_pose_history_range: 40
+  enemy_front_pose_history_threshold: 30
+  shoot_distance_limit: 2.5
+}
+
+# 相机调整的偏移量 yaw、pitch轴调整阈值、调整策略-渐进参数
+camera_gimbal_transform {
+    offset_x: 0
+    offset_y: 0.1
+    offset_z: 0
+    offset_pitch: 0.0
+    offset_yaw: 0.0
+    pinch_param: 0.5 # 渐进逼近 云台调整角度 参数
+    yaw_change_threshold: 0.02 # yaw轴调整阈值
+    pitch_change_threshold: 0.03  # pitch轴调整阈值
+    pid_kp: 1
+    pid_ki: 0.2
+    pid_kd: 0.3
+    pid_max_out: 0.785
+    pid_max_iout: 0.785
+    offset_y_weight: 0.52
+}
+
+# 弹道模型
+shooter_model_config {
+  h: 0.167
+  GRAVITY: 9.7936
+  init_k_: 0.026
+  h_adjust: 0.05
+  shoot_speed: 18.0
+}
+
+wing_bot {
+  start_position {
+    x: 1.25 # 7.23
+    y: 1.17 # 4.32
+    z: 0
+
+    roll:  0
+    pitch: 0
+    yaw:   1.57 # -1.57
+  }
+}
+
+master_bot {
+  start_position {
+    x: 0.56 # 7.68
+    y: 0.56 # 4.77
+    z: 0
+
+    roll:  0
+    pitch: 0
+    yaw:   0 # 3.14
+  }
+}
+
+
+buff_point {  # ①
+
+  x: 7.62 # 7.58
+  y: 1.69
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   3 #2.62
+}
+
+buff_point {  # ②
+
+  x: 6.18
+  y: 2.79
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -0.52
+}
+
+buff_point {
+
+  x: 4.04 # 4.04
+  y: 0.54 # 0.445
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+buff_point {
+
+  x: 4.04 # 4.04
+  y: 4.035
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+
+buff_point {
+
+  x: 1.9
+  y: 1.71 # 1.69
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+
+buff_point {
+
+  x: 0.48 # 0.5
+  y: 2.80 # 2.79
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+
+search_region_1 { # ①
+  x: 5.7
+  y: 0.5
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+search_region_1 {
+  x: 6.5
+  y: 1.5
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   1.27
+}
+
+search_region_1 {
+  x: 5.2
+  y: 3.4
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -2.255
+}
+
+search_region_1 {
+  x: 2.7
+  y: 3.8
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   3.14
+}
+
+search_region_1 {
+  x: 1.5
+  y: 2.8
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -1.9
+}
+
+search_region_1 { # ⑥
+  x: 2.7
+  y: 1.0
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0.8
+}
+
+search_region_2 { # ①
+  x: 5.0
+  y: 1.6
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   2.355
+}
+
+search_region_2 {
+  x: 3.0
+  y: 1.6
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   2.74
+}
+
+search_region_2 {
+  x: 3.0
+  y: 2.8
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -0.785
+}
+
+search_region_2 {
+  x: 5.0
+  y: 2.8
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -0.4
+}
+
+
+search_region_3 { # ①
+  x: 5.7
+  y: 0.5
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+search_region_3 {
+  x: 6.2
+  y: 1.
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -1.57
+}
+
+search_region_3 {
+  x: 2.84
+  y: 3.47
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+
+search_region_4 {
+  x: 5.55
+  y: 2.93
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   1.57
+}
+
+search_region_4 {
+  x: 6.14
+  y: 4.34
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+search_region_4 {
+  x: 6.83
+  y: 3.05
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -1.57
+}
+
+
+
+patrol_region{
+  x: 2.5
+  y: 1.2
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+
+patrol_region{
+  x: 3.8
+  y: 2.85
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -1.57
+}
+
+patrol_region{
+  x: 6.5
+  y: 2.2
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   1.57
+}
+
+
+patrol_region{
+  x: 5.0
+  y: 2.7
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -1
+}
+
+patrol_region{
+  x: 1.6
+  y: 3.9
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   3.0
+}
+
+
+# icra2019 map
+point {
+  x: 6.14
+  y: 4.45
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+point {
+  x: 6.73
+  y: 0.82
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   3.14
+}
+
+
+point {
+  x: 2.49
+  y: 4.64
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   3.14
+}
+
+point {
+  x: 1.26
+  y: 1.02
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}
+
+escape {
+  left_x_limit: 2.5
+  right_x_limit: 5.5
+  robot_x_limit: 4
+  left_random_min_x: 0
+  left_random_max_x: 2.5
+  right_random_min_x: 5.5
+  right_random_max_x: 8
+}
+
+
+search_limit {
+  x_limit: 4.2
+  y_limit: 2.75
+}
+
+whirl_vel {
+  angle_x_vel: 0
+  angle_y_vel: 0
+  angle_z_vel: 1
+}
+
+wing_bot_task_point {
+  x: 4.2
+  y: 0.87
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   1.57
+}
+
+
+
+buff_adjust_point {
+  x: 7.68 # 7.58
+  y: 1.69
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   3 #2.62
+}
+
+buff_adjust_point {
+  x: 6.18 
+  y: 2.79
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   -0.52
+}
+
+buff_adjust_point {
+  x: 4.14 # 4.04
+  y: 0.445
+  z: 0
+
+  roll:  0
+  pitch: 0
+  yaw:   0
+}

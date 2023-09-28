@@ -1,0 +1,102 @@
+syntax = "proto2";
+package RTS_DECISION;
+
+message Point {
+    optional float x = 1;
+    optional float y = 2;
+    optional float z = 3;
+
+    optional float roll  = 4;
+    optional float pitch = 5;
+    optional float yaw   = 6;
+}
+
+message EscapeConstraint {
+    optional float left_x_limit = 1;
+    optional float right_x_limit = 2;
+    optional float robot_x_limit = 3;
+    optional float left_random_min_x = 4;
+    optional float left_random_max_x = 5;
+    optional float right_random_min_x = 6;
+    optional float right_random_max_x = 7;
+}
+
+message SearchConstraint {
+  optional float x_limit = 1;
+  optional float y_limit = 2;
+}
+
+// 弹道模型参数
+message ShooterModelConfig {
+  optional float h = 1;
+  optional float GRAVITY = 2;
+  optional float init_k_ = 3;
+  optional float h_adjust = 4;
+  optional float shoot_speed = 5;
+}
+
+message WhirlVel {
+  optional float angle_x_vel = 1;
+  optional float angle_y_vel = 2;
+  optional float angle_z_vel = 3;
+}
+
+message MultiRobot {
+  optional Point start_position = 7;
+}
+
+// 云台调整参数
+message CameraGimbalTransform{
+  required float offset_x = 1;
+  required float offset_y = 2;
+  required float offset_z = 3;
+  required float offset_pitch = 4;
+  required float offset_yaw = 5;
+  optional float pinch_param = 6; // 云台调整 渐进参数
+  required float yaw_change_threshold = 7;  // yaw轴调整阈值
+  required float pitch_change_threshold = 8;  // pitch轴调整阈值
+  optional float pid_kp = 9;
+  optional float pid_ki = 10;
+  optional float pid_kd = 11;
+  optional float pid_max_out = 12;
+  optional float pid_max_iout = 13;
+  required float offset_y_weight = 14;
+}
+
+message DetectionShootConfig{
+  optional float armor_change_threshold = 1;
+  optional int32 detect_lost_limit = 2;
+  optional int32 gimbal_adjust_history_range = 3;
+  optional int32 armor_detected_history_range = 4;
+  optional int32 armor_detected_history_threshold = 5;
+  optional int32 enemy_detected_history_range = 6;
+  optional int32 enemy_detected_history_threshold = 7;
+  optional int32 enemy_front_pose_history_range = 8;
+  optional int32 enemy_front_pose_history_threshold = 9;
+  required float shoot_distance_limit = 10;
+}
+
+message DecisionConfig {
+    repeated Point point = 1;
+    optional bool simulate = 2 [default = false];
+    optional bool master = 3 [default = false];
+    optional EscapeConstraint escape = 4;
+    repeated Point buff_point = 5;    // 6个加成区
+    optional SearchConstraint search_limit = 6;
+    optional WhirlVel whirl_vel = 7;
+    optional MultiRobot wing_bot = 8;
+    optional MultiRobot master_bot = 9;
+    optional Point wing_bot_task_point = 10;
+    repeated Point search_region_1 = 11;
+    repeated Point search_region_2 = 12;
+    repeated Point search_region_3 = 13;
+    repeated Point search_region_4 = 14;
+    repeated Point patrol_region = 15;        // 巡逻区域
+    optional ShooterModelConfig shooter_model_config = 16;  // 射击-弹道模拟的参数
+    optional int32 robot_id = 17;             // 机器人ID
+    repeated Point buff_adjust_point = 18;    // 六个加成区的辅助调整位姿
+    optional DetectionShootConfig detection_shoot_config = 19;    // 判定检测不到敌人的时间限制
+    optional CameraGimbalTransform camera_gimbal_transform = 20;  // 相机调整 
+    optional bool use_pid = 21;
+}
+

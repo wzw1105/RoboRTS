@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Fallback name="root_fallback">
+            <Condition ID="NotGameStage"/>
+            <ReactiveSequence name="Patrol">
+                <Condition ID="WeatherPatrol"/>
+                <Action ID="Patrol"/>
+            </ReactiveSequence>
+        </Fallback>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Condition ID="NotGameStage"/>
+        <Action ID="Patrol"/>
+        <Condition ID="WeatherPatrol"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+
